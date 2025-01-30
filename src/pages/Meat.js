@@ -9,12 +9,15 @@ import z3 from './images/chicken roll card.jpg';
 import z4 from './images/crab lolipop 1.jpg';
 import z5 from './images/kebab meat card.jpg';
 import z6 from './images/masala kheema.jpg';
-import z7 from './images/beef chilly.jpg'
+import z7 from './images/beef chilly.jpg';
 import z8 from './images/ramen card.jpg';
+import { FaShoppingCart } from 'react-icons/fa';
 
 function ProductCards() {
   // State for cart
   const [cart, setCart] = useState([]);
+  const [showCart, setShowCart] = useState(false); // To toggle cart visibility
+  const [showNotification, setShowNotification] = useState(false); // For notification visibility
 
   // Product data
   const products = [
@@ -90,10 +93,31 @@ function ProductCards() {
         return [...prevCart, { ...product, quantity: 1 }];
       }
     });
+    setShowNotification(true);
+    setTimeout(() => setShowNotification(false), 2000); // Hide notification after 2 seconds
+  };
+
+  // Remove item from cart
+  const removeFromCart = (productTitle) => {
+    setCart((prevCart) => prevCart.filter(item => item.title !== productTitle));
+  };
+
+  // Update quantity in cart
+  const updateQuantity = (productTitle, action) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.title === productTitle
+          ? {
+              ...item,
+              quantity: action === 'increase' ? item.quantity + 1 : item.quantity > 1 ? item.quantity - 1 : item.quantity,
+            }
+          : item
+      )
+    );
   };
 
   return (
-    <div className='mt-3'>
+    <div className="mt-3">
       <h2><center>𝐌𝐞𝐚𝐭</center></h2>
       <Row xs={1} sm={2} md={3} lg={4} xl={4} className="g-4">
         {products.map((product, index) => (
@@ -117,7 +141,6 @@ function ProductCards() {
                   variant="primary"
                   className="add-to-cart-btn"
                   onClick={() => addToCart(product)}
-
                 >
                   Add to Cart
                 </Button>
@@ -127,17 +150,111 @@ function ProductCards() {
         ))}
       </Row>
 
-      <div className="mt-4">
-        <h3>Cart ({cart.length} items)</h3>
-        <ul>
-          {cart.map((item, index) => (
-            <li key={index}>
-              {item.title} -＄ {item.price} X {item.quantity}
-            </li>
-          ))}
-        </ul>
-        <div>𝗧𝗼𝘁𝗮𝗹 : ${cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</div>
+      {/* Sticky shopping bag icon */}
+      <div
+        className="sticky-cart"
+        onClick={() => setShowCart(!showCart)}
+        style={{
+          position: 'fixed',
+          bottom: '20px',
+          right: '20px',
+          backgroundColor: 'purple',
+          borderRadius: '50%',
+          padding: '15px',
+          color: 'white',
+          cursor: 'pointer',
+        }}
+      >
+        <FaShoppingCart size={30} />
       </div>
+
+      {/* Notification when item is added to cart */}
+      {showNotification && (
+        <div
+          className="cart-notification"
+          style={{
+            position: 'fixed',
+            bottom: '80px',
+            right: '20px',
+            backgroundColor: 'green',
+            color: 'white',
+            padding: '10px',
+            borderRadius: '5px',
+            boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+            zIndex: '1000',
+          }}
+        >
+          Item added to cart!
+        </div>
+      )}
+
+      {/* Cart details modal */}
+      {showCart && (
+        <div
+          className="cart-modal"
+          style={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: 'white',
+            padding: '20px',
+            borderRadius: '8px',
+            boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+            zIndex: '1000',
+            maxHeight: '80vh',
+            overflowY: 'scroll',
+            width: '300px',
+          }}
+        >
+          <h3>Your Cart</h3>
+          <ul>
+            {cart.length === 0 ? (
+              <li>Your cart is empty!</li>
+            ) : (
+              cart.map((item, index) => (
+                <li key={index} style={{ marginBottom: '10px' }}>
+                  <div className="d-flex justify-content-between">
+                    <img src={item.image} alt={item.title} style={{ width: '40px', height: '40px' }} />
+                    <span>{item.title}</span>
+                    <span>${item.price} X {item.quantity}</span>
+                  </div>
+                  <div className="d-flex justify-content-between">
+                    <Button
+                      variant="outline-primary"
+                      size="sm"
+                      onClick={() => updateQuantity(item.title, 'increase')}
+                    >
+                      +
+                    </Button>
+                    <Button
+                      variant="outline-primary"
+                      size="sm"
+                      onClick={() => updateQuantity(item.title, 'decrease')}
+                    >
+                      -
+                    </Button>
+                    <Button
+                      variant="outline-danger"
+                      size="sm"
+                      onClick={() => removeFromCart(item.title)}
+                    >
+                      Remove
+                    </Button>
+                  </div>
+                </li>
+              ))
+            )}
+          </ul>
+          <div className="d-flex justify-content-between">
+            <strong>Total: </strong>
+            <span>${cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</span>
+          </div>
+          <Button variant="secondary" onClick={() => setShowCart(false)} style={{ marginTop: '10px' }}>
+            Close
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

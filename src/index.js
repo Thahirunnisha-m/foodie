@@ -16,12 +16,12 @@ import Salads from './pages/Salads'
 
 function Apps(){
 return(
-  <BrowserRouter>
+  <BrowserRouter basename='foodie'>
   <Routes>
    <Route path="/"element={<Layout/>}>
     <Route index element={<Home/>}/>
-    <Route path="about"element={<About/>}/>
-    <Route path="menu"element={<Menu/>}/>
+    <Route path="about" element={<About/>}/>
+    <Route path="menu" element={<Menu/>}/>
     <Route path= "fastfood" element={<FastFood/>}/>
     <Route path= "meat" element ={<Meat/>}/>
     <Route path= "backery" element ={<Backery/>}/>

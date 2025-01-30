@@ -33,11 +33,11 @@ const ContactForm = () => {
   };
 
   return (
-    <div  className="contact-form mt-5">
+    <div  className="contact-form mt-5 mb-5">
       <h2>Contact Us</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">name</label>
           <input
             type="text"
             id="name"

@@ -11,6 +11,19 @@ body {
   background-color: #f4f4f4;
 }
 
+.navbar-custom {
+  .navbar-custom {
+    padding-top: 5px;  
+    padding-bottom: 5px;  
+  }
+  
+}
+
+.navbar-links .nav-link {
+  margin-right: 15px;
+}
+
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -22,6 +35,17 @@ body {
 .navbar .logo {
   font-size: 24px;
   font-weight: bold;
+}
+
+.nav-link:hover {
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.nav-link {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .hamburger {
@@ -51,6 +75,7 @@ body {
   transition: left 0.3s ease;
   padding-top: 60px;
   z-index: 1000;
+  
 }
 
 .sidebar.active {
@@ -167,7 +192,7 @@ body {
   border-top: 1px solid #ddd;
 }
 
-/* Style for the separated link */
+
 .navbar .dropdown-item.separated {
   color: #28a745;
   font-weight: bold;
@@ -183,7 +208,7 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
-/* Star rating styling */
+
 .star {
   color: #dcdcdc;
   font-size: 1.2rem;
@@ -194,7 +219,6 @@ body {
   color: #ffdd00;
 }
 
-/* Styling for the add to cart button */
 button {
   margin-top: 10px;
   padding: 8px 15px;
@@ -209,6 +233,11 @@ button:hover {
   background-color: #0056b3;
 }
 /* card hover section end */
+
+
+
+
+
 /* Footer section start */
 /* Footer Background */
 footer {
@@ -293,10 +322,15 @@ footer .py-5 {
 footer .pt-5 {
   padding-top: 5rem;
 }
-
+/* Footer links hover effect */
+.footer-link:hover {
+  color: #ffd700; 
+  text-decoration: underline;
+}
 /* Footer section end */
+
+
 /* contact form */
-/* App.css */
 .contact-form {
   max-width: 600px;
   margin: 0 auto;
@@ -354,4 +388,117 @@ footer .pt-5 {
   font-size: 14px;
   color: green;
 }
+
+/* Fast food section start */
+/* Hover effect on cards */
+.hover-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Style for rating stars */
+.rating {
+  display: flex;
+  gap: 5px;
+}
+
+.star {
+  font-size: 1.2rem;
+  color: gold;
+}
+
+/* Add to Cart button styling */
+.add-to-cart-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  background-color: #007bff;
+  border-color: #007bff;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* Price styling */
+.price {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Cart styling */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 5px 0;
+}
+
+div {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+/* ProductCards.css */
+
+/* Styling for Cart List */
+.cart-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.cart-item {
+  background-color: #f8f9fa;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 1.1em;
+}
+
+.cart-item:hover {
+  background-color: #e2e6ea;
+}
+
+/* Cart Total Styling */
+.cart-total {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 10px;
+  padding-top: 5px;
+}
+
+/* Card Hover Effects */
+.hover-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for Add to Cart Button */
+.add-to-cart-btn {
+  width: 100%;
+  background-color: #28a745;
+  border: none;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #218838;
+}
+
+/* Fast food section end */
+/* Add to cart start */
+
+.cart-heart-icons:hover {
+  color: #f39c12;  
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+/* Add to cart end */
+
+
 
